@@ -1,6 +1,7 @@
 
 ![beta1](https://github.com/rossman22590/StableGen-NextJS-Multi-Model-Stable-DIffusion/assets/6137292/0c451a82-b9cd-4b33-b2cf-babb60f37ffc)
 
+(New UI coming soon!)
 # StableGen
 
 StableGen is a web application that generates stable images based on user prompts using various AI models. It provides an interface for users to enter a prompt, select models, and generate images. Users can also send the generated images to a Discord channel.
