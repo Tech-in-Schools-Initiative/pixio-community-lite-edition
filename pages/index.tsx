@@ -298,7 +298,12 @@ export default function HomePage() {
 
       <button className="mt-4 w-full bg-purple-600 text-white font-bold py-2 px-4 rounded hover:bg-purple-700 focus:outline-none focus:shadow-outline">
         <a href="/gallery" className="block text-center">
-          View Gallery
+          View Gallery (Coming Soon)
+        </a>
+      </button>
+      <button className="mt-4 w-full bg-purple-600 text-white font-bold py-2 px-4 rounded hover:bg-purple-700 focus:outline-none focus:shadow-outline">
+        <a href="/gallery" className="block text-center">
+          Prompt Builder (Coming Soon)
         </a>
       </button>
       
