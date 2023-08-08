@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Prodia } from "pixio-prodia";
 
-const prodia = new Prodia(process.env.PRODIA_KEY);
-
 const defaultSettings = {
   steps: 50,
   cfg_scale: 20,
@@ -11,7 +9,7 @@ const defaultSettings = {
   aspect_ratio: 'square'
 };
 
-async function createImageGenerationJob(options) {
+async function createImageGenerationJob(prodia, options) {
   console.log('Creating image generation job with options:', options);
   let job = await prodia.createJob(options);
 
@@ -29,6 +27,7 @@ async function createImageGenerationJob(options) {
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const {
+    prodiaKey,
     model,
     prompt,
     negativePrompt,
@@ -40,6 +39,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     aspect_ratio
   } = req.body;
 
+  const prodia = new Prodia(prodiaKey);
   const options = {
     model: model || 'deliberate_v2.safetensors [10ec4b29]',
     prompt: prompt || 'puppy',
@@ -53,7 +53,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   };
 
   try {
-    let imageGenerationJob = await createImageGenerationJob(options);
+    let imageGenerationJob = await createImageGenerationJob(prodia, options);
 
     if (imageGenerationJob.status !== "succeeded") {
       throw new Error("Image generation job failed");

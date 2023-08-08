@@ -1,26 +1,84 @@
-import { useState } from 'react';
+require('dotenv').config()
+
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import { CircularProgress } from '@material-ui/core';
-import { Button } from '@material-ui/core';
+import { CircularProgress, Button } from '@material-ui/core';
+
 
 
 const prohibitedWords = ['nude', 'naked', 'pussy'];
+const ProdiaKeyModal = ({ setProdiaKey, setShowProdiaKeyModal }) => { // Add setShowProdiaKeyModal as a prop
+  const [key, setKey] = useState('');
 
-export default function HomePage() {
-  const toggleSelectAllImages = () => {
-    // Check if all images are currently selected
-    const allSelected = imageUrls.every((image) => image.selected);
-  
-    if (allSelected) {
-      // If all images are selected, deselect all
-      setImageUrls(imageUrls.map((image) => ({ ...image, selected: false })));
-    } else {
-      // If not all images are selected, select all
-      setImageUrls(imageUrls.map((image) => ({ ...image, selected: true })));
-    }
+  const handleInputChange = (e) => {
+    setKey(e.target.value);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem('PRODIA_KEY', key);
+    setProdiaKey(key);
+    setShowProdiaKeyModal(false); // Add this line
+  };
+
+  return (
+    <>
+      <div 
+        style={{
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          zIndex: '1000',
+        }}
+      />
+      <div 
+        className="modal" 
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          backgroundColor: '#fff',
+          padding: '50px',
+          zIndex: '1001',
+        }}
+      >
+        <form onSubmit={handleSubmit}>
+          <label>
+            Prodia Key:
+            <input type="text" value={key} onChange={handleInputChange} required />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </>
+  );
+};
+
+  
+export default function HomePage() {
+  const [prodiaKey, setProdiaKey] = useState('');
+  const [showProdiaKeyModal, setShowProdiaKeyModal] = useState(true); // Add this line
+  useEffect(() => {
+    const storedKey = localStorage.getItem('PRODIA_KEY');
+    console.log('Stored key:', storedKey); // Add this line
+    if (storedKey) {
+      setProdiaKey(storedKey);
+      setShowProdiaKeyModal(false);
+    } else {
+      const envKey = process.env.PRODIA_KEY;
+      console.log('Env key:', envKey); // And this line
+      if (envKey) {
+        setProdiaKey(envKey);
+        setShowProdiaKeyModal(false);
+      }
+    }
+  }, []);
   
   const [prompt, setPrompt] = useState('');
   const [negativePrompt, setNegativePrompt] = useState('');
@@ -77,7 +135,12 @@ export default function HomePage() {
     
   const models = Object.keys(modelMap);
 
-
+  const toggleSelectAllImages = () => {
+    const areAllSelected = imageUrls.every((image) => image.selected);
+    const updatedImageUrls = imageUrls.map((image) => ({ ...image, selected: !areAllSelected }));
+    setImageUrls(updatedImageUrls);
+  };
+  
 
   const handleGenerateImage = async () => {
     setButtonText('Loading...');
@@ -104,6 +167,7 @@ export default function HomePage() {
           upscale: true,
           aspect_ratio, // add this line
           sampler, // and this line
+          prodiaKey, // Add this line
         });
 
         const imageUrl = response.data.imageUrl;
@@ -169,6 +233,7 @@ export default function HomePage() {
   return (
     
     <div className="flex flex-col items-center justify-center min-h-screen py-2 w-full">
+{showProdiaKeyModal && <ProdiaKeyModal setProdiaKey={setProdiaKey} setShowProdiaKeyModal={setShowProdiaKeyModal} />} 
     <h1 className="text-4xl font-bold mb-8">👀Pixio</h1>
     {error && <p className="text-red-500 mb-4">{error}</p>}
     <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md mb-8">
@@ -289,12 +354,13 @@ export default function HomePage() {
       >
         Send to Gallery
       </button>
-<button
+      <button
   onClick={toggleSelectAllImages}
   className="mt-4 w-full bg-orange-600 text-white font-bold py-2 px-4 rounded hover:bg-orange-700 focus:outline-none focus:shadow-outline"
 >
   Toggle Select All Images
 </button>
+
 
       <button className="mt-4 w-full bg-purple-600 text-white font-bold py-2 px-4 rounded hover:bg-purple-700 focus:outline-none focus:shadow-outline">
         <a href="/gallery" className="block text-center">
