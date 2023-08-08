@@ -1,11 +1,11 @@
 # New UI coming soon!
 
-![beta1](https://github.com/rossman22590/StableGen-NextJS-Multi-Model-Stable-DIffusion/assets/6137292/0c451a82-b9cd-4b33-b2cf-babb60f37ffc)
+![beta1](https://github.com/rossman22590/Pixio-NextJS-Multi-Model-Stable-DIffusion/assets/6137292/0c451a82-b9cd-4b33-b2cf-babb60f37ffc)
 
 
-# StableGen
+# Pixio
 
-StableGen is a web application that generates stable images based on user prompts using various AI models. It provides an interface for users to enter a prompt, select models, and generate images. Users can also send the generated images to a Discord channel.
+Pixio is a web application that generates stable images based on user prompts using various AI models. It provides an interface for users to enter a prompt, select models, and generate images. Users can also send the generated images to a Discord channel.
 
 ## Technologies Used
 
@@ -23,11 +23,11 @@ StableGen is a web application that generates stable images based on user prompt
 
 ## Demo
 
-To see a live demo of StableGen, you can visit the following link: [Demo](https://your-demo-link)
+To see a live demo of Pixio, you can visit the following link: [Demo](https://your-demo-link)
 
 ## Getting Started
 
-To get a local copy of StableGen up and running, follow these steps:
+To get a local copy of Pixio up and running, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
 2. Navigate to the project directory: `cd your-repo`
@@ -58,11 +58,11 @@ steps 13
 
 ## Prompt Moderation
 
-StableGen performs prompt moderation to ensure that the entered prompts do not contain inappropriate content. It checks for prohibited words such as "nude," "naked," and "pussy." If a prompt contains any of these prohibited words, the generation process will be canceled, and an error message will be displayed.
+Pixio performs prompt moderation to ensure that the entered prompts do not contain inappropriate content. It checks for prohibited words such as "nude," "naked," and "pussy." If a prompt contains any of these prohibited words, the generation process will be canceled, and an error message will be displayed.
 
 ## Models
 
-StableGen supports the following AI models for image generation:
+Pixio supports the following AI models for image generation:
 
 - Analog Diffusion v1.0
 - Anything v3.0
@@ -92,7 +92,7 @@ Feel free to add more models to the `modelMap` object in the code.
 
 ## Deployment
 
-To deploy StableGen to a production environment, follow these steps:
+To deploy Pixio to a production environment, follow these steps:
 
 1. Build the production-ready code: `npm run build`
 2. Deploy the generated `build` folder to Vercel or your preferred hosting service.
