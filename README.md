@@ -1,5 +1,7 @@
+# New UI coming soon!
 
 ![beta1](https://github.com/rossman22590/StableGen-NextJS-Multi-Model-Stable-DIffusion/assets/6137292/0c451a82-b9cd-4b33-b2cf-babb60f37ffc)
+
 
 # StableGen
 
@@ -12,7 +14,7 @@ StableGen is a web application that generates stable images based on user prompt
 - react-image-lightbox: A React component for displaying images in a lightbox.
 - Material-UI: A popular React UI framework that provides pre-built components.
 - discord.js: A powerful JavaScript library for interacting with the Discord API.
-- ProdIA: An AI model API for image generation.
+- Prodia: An AI model API for image generation.
 - OpenAI: A leading provider of AI models and APIs.
 - Upstash: A serverless Redis database for caching and data storage.
 - Vercel: A cloud platform for deploying and hosting web applications.
