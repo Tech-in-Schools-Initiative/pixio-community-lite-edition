@@ -6,6 +6,8 @@
 
 🌙 Dark Mode Added
 
+![image](https://github.com/Tech-in-Schools-Inititaitive/pixio-community-lite-edition/assets/6137292/481c772c-fae7-4d46-8cb8-5a04ef065a9b)
+
 We're excited to announce the addition of Dark Mode in Pixio! This feature provides a sleek and eye-friendly interface, perfect for those late-night creative sessions.
 
 ### How to Enable Dark Mode
