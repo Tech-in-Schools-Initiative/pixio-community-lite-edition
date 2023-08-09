@@ -2,11 +2,9 @@
 
 ![image](https://github.com/rossman22590/pixio-community-lite/assets/6137292/b0bf92a3-36db-46d3-b0c2-7970ae81f569)
 
+# Pixio Community Lite
 
-
-# Pixio
-
-Pixio is a web application that generates stable images based on user prompts using various AI models. It provides an interface for users to enter a prompt, select models, and generate images. Users can also send the generated images to a Discord channel.
+Pixio Community Lite is a web application that generates stable images based on user prompts using various AI models. It provides an interface for users to enter a prompt, select models, and generate images. Users can also send the generated images to a Discord channel. 
 
 ## Technologies Used
 
@@ -24,7 +22,7 @@ Pixio is a web application that generates stable images based on user prompts us
 
 ## Demo
 
-To see a live demo of Pixio, you can visit the following link: [Demo](https://your-demo-link)
+To see a live demo of Pixio, you can visit the following link: [Demo](https://pixio-community-lite.vercel.app/)
 
 ## Getting Started
 
