@@ -1,6 +1,6 @@
 # New UI coming soon!
 
-![image](https://github.com/rossman22590/pixio-community-lite/assets/6137292/b0bf92a3-36db-46d3-b0c2-7970ae81f569)
+![image](https://github.com/rossman22590/Pixio Community Lite-community-lite/assets/6137292/b0bf92a3-36db-46d3-b0c2-7970ae81f569)
 
 # Pixio Community Lite
 
@@ -22,11 +22,11 @@ Pixio Community Lite is a web application that generates stable images based on 
 
 ## Demo
 
-To see a live demo of Pixio, you can visit the following link: [Demo](https://pixio-community-lite.vercel.app/)
+To see a live demo of Pixio Community Lite, you can visit the following link: [Demo](https://Pixio Community Lite-community-lite.vercel.app/)
 
 ## Getting Started
 
-To get a local copy of Pixio up and running, follow these steps:
+To get a local copy of Pixio Community Lite up and running, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
 2. Navigate to the project directory: `cd your-repo`
@@ -57,11 +57,11 @@ steps 13
 
 ## Prompt Moderation
 
-Pixio performs prompt moderation to ensure that the entered prompts do not contain inappropriate content. It checks for prohibited words such as "nude," "naked," and "pussy." If a prompt contains any of these prohibited words, the generation process will be canceled, and an error message will be displayed.
+Pixio Community Lite performs prompt moderation to ensure that the entered prompts do not contain inappropriate content. It checks for prohibited words such as "nude," "naked," and "pussy." If a prompt contains any of these prohibited words, the generation process will be canceled, and an error message will be displayed.
 
 ## Models
 
-Pixio supports the following AI models for image generation:
+Pixio Community Lite supports the following AI models for image generation:
 
 - Analog Diffusion v1.0
 - Anything v3.0
@@ -91,7 +91,7 @@ Feel free to add more models to the `modelMap` object in the code.
 
 ## Deployment
 
-To deploy Pixio to a production environment, follow these steps:
+To deploy Pixio Community Lite to a production environment, follow these steps:
 
 1. Build the production-ready code: `npm run build`
 2. Deploy the generated `build` folder to Vercel or your preferred hosting service.
