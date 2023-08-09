@@ -2,6 +2,16 @@
 
 ![image](https://github.com/Tech-in-Schools-Inititaitive/pixio-community-lite-edition/assets/6137292/9a8fdaab-4a5f-49d6-b635-fc8f49848cea)
 
+## Updates
+
+🌙 Dark Mode Added
+
+We're excited to announce the addition of Dark Mode in Pixio! This feature provides a sleek and eye-friendly interface, perfect for those late-night creative sessions.
+
+### How to Enable Dark Mode
+
+Switching to Dark Mode is simple. Just look for the Dark Mode toggle in the menu, and with a single click, you can enjoy the new look.
+
 
 # Pixio Community Lite Edition
 
