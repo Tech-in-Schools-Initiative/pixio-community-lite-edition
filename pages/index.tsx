@@ -1,5 +1,5 @@
 require('dotenv').config()
-import { FaGithub, FaQuestionCircle, FaLink, FaLifeRing, FaTwitter } from 'react-icons/fa';
+import {  FaSun, FaMoon, FaGithub, FaQuestionCircle, FaLink, FaLifeRing, FaTwitter } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Lightbox from 'react-image-lightbox';
@@ -96,6 +96,16 @@ const ProdiaKeyModal = ({ setProdiaKey, setShowProdiaKeyModal }) => {
   
 export default function HomePage() {
   const [prodiaKey, setProdiaKey] = useState('');
+  const [darkMode, setDarkMode] = useState(false);
+    // Handle dark mode changes
+    useEffect(() => {
+      if (darkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }, [darkMode]);
+  
   const [showProdiaKeyModal, setShowProdiaKeyModal] = useState(true); // Add this line
   useEffect(() => {
     const storedKey = localStorage.getItem('PRODIA_KEY');
@@ -262,13 +272,12 @@ export default function HomePage() {
       setLightboxOpen(false);
     }
   };
-
   return (
-    <div className="flex flex-col items-start min-h-screen w-full py-0"> {/* Removed py-2 */}
-  
+  <div className={`flex flex-col items-start min-h-screen w-full py-0 ${darkMode ? 'dark' : ''}`}>
+  {/* Dark mode toggle button */}
       {showProdiaKeyModal && <ProdiaKeyModal setProdiaKey={setProdiaKey} setShowProdiaKeyModal={setShowProdiaKeyModal} />} 
   
-      <header className="w-full p-4 mb-4 bg-gray-800 text-white flex justify-around">
+      <header className="w-full p-4 mb-4 bg-black text-white flex justify-around">
       {/* Icons */}
         <a href="https://github.com/Tech-in-Schools-Inititaitive/pixio-community-lite-edition" target="_blank" rel="noopener noreferrer">
           <FaGithub size={24} />
@@ -285,11 +294,16 @@ export default function HomePage() {
         <a href="https://x.com/tsi_org" target="_blank" rel="noopener noreferrer">
           <FaTwitter size={24} />
         </a>
+
+  <button onClick={() => setDarkMode(!darkMode)} className="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-4 py-2 rounded-full hover:bg-gray-400 dark:hover:bg-gray-600 transition-all duration-300">
+    {darkMode ? '' : ''} {darkMode ? <FaSun size={24} /> : <FaMoon size={24} />}
+  </button>
+
       </header>
   
       <div className="flex flex-col lg:flex-row w-full">
         {/* Left Side (UI/UX Inputs) */}
-        <div className="w-3/10 pr-2">
+        <div className={`w-3/10 pr-2 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
         <h1 className="text-4xl font-bold mb-8 text-center">👀Pixio</h1>
           {error && <p className="text-red-500 mb-4">{error}</p>}
           
@@ -297,33 +311,36 @@ export default function HomePage() {
             <div className="bg-white shadow-md rounded-lg p-6 w-full md:max-w-md mb-8">
               {/* Prompt Input */}
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="prompt">
-                  Prompt
-                </label>
-                <input
-                  type="text"
-                  value={prompt}
-                  onChange={(event) => setPrompt(event.target.value)}
-                  placeholder="Enter your prompt"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="prompt"
-                />
-              </div>
-  
-              {/* Negative Prompt Input */}
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="negative-prompt">
-                  Negative Prompt
-                </label>
-                <input
-                  type="text"
-                  value={negativePrompt}
-                  onChange={(event) => setNegativePrompt(event.target.value)}
-                  placeholder="Enter your negative prompt"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="negative-prompt"
-                />
-              </div>
+  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="prompt">
+    Prompt
+  </label>
+  <textarea
+  value={prompt}
+  onChange={(event) => setPrompt(event.target.value)}
+  placeholder="Enter your prompt"
+  className={`shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline ${darkMode ? 'text-white' : 'text-gray-700'}`}
+  style={darkMode ? { backgroundColor: '#262626' } : {}}
+  id="prompt"
+  rows={3}
+/>
+</div>
+<div className="mb-4">
+  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="negative-prompt">
+    Negative Prompt
+  </label>
+  <textarea
+  value={negativePrompt}
+  onChange={(event) => setNegativePrompt(event.target.value)}
+  placeholder="Enter your negative prompt"
+  className={`shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline ${darkMode ? 'text-white' : 'text-gray-700'}`}
+  style={darkMode ? { backgroundColor: '#262626' } : {}}
+  id="negative-prompt"
+  rows={3}
+/>
+</div>
+
+
+
   
               {/* Model Selection */}
               <div className="mb-4">
@@ -339,17 +356,22 @@ export default function HomePage() {
           >
             Select All
           </Button>
-                  {models.map((model) => (
-                    <Button
-                      key={model}
-                      variant={selectedModels.includes(model) ? "contained" : "outlined"}
-                      color={selectedModels.includes(model) ? "primary" : "default"}
-                      onClick={() => toggleModelSelection(model)}
-                      className="m-1"
-                    >
-                      {model}
-                    </Button>
-                  ))}
+          {models.map((model) => (
+  <Button
+    key={model}
+    variant={selectedModels.includes(model) ? "contained" : "outlined"}
+    style={{
+      backgroundColor: selectedModels.includes(model) && darkMode ? '#3c3c3c' : '',
+      color: selectedModels.includes(model) && darkMode ? 'white' : '',
+    }}
+    onClick={() => toggleModelSelection(model)}
+    className="m-1"
+  >
+    {model}
+  </Button>
+))}
+
+
                 </div>
               </div>
   

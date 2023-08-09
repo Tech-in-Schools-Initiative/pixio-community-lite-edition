@@ -5,6 +5,35 @@
 .xl\:grid-cols-5 {
     grid-template-columns: repeat(4,minmax(0,1fr))!important;
 }
+.dark {
+  background-color: #1b1b1b;
+  color: #f0f0f0;
+}
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: #1b1b1b;
+}
+.dark .bg-white {
+  --tw-bg-opacity: 1;
+  background-color: #1b1b1b !important;
+}
+
+
+.dark .text-gray-700 {
+  --tw-text-opacity: 1;
+  color: white;
+}
+
+.dark input,
+.dark select,
+.dark button {
+  background-color: #1b1b1b;
+  color: #f0f0f0;
+}
+
+.dark a {
+  color: #a1a1a1;
+}
 
 
 .pageContainer {
