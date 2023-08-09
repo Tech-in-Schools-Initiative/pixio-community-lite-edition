@@ -29,8 +29,8 @@ To see a live demo of Pixio Community Lite Edition, you can visit the following 
 
 To get a local copy of Pixio Community Lite Edition up and running, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
-2. Navigate to the project directory: `cd your-repo`
+1. Clone the repository
+2. Navigate to the project directory
 3. Install the dependencies: `npm install`
 4. Start the development server: `npm start`
 5. Open your web browser and visit: `http://localhost:3000`
