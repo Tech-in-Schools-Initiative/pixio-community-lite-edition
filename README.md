@@ -1,6 +1,6 @@
 # New UI coming soon!
 
-![image](https://github.com/rossman22590/pixio-community-lite/assets/6137292/932f8e7a-0c37-4f0e-a30e-d0f7b1495777)
+![image](https://github.com/Tech-in-Schools-Inititaitive/pixio-community-lite-edition/assets/6137292/9a8fdaab-4a5f-49d6-b635-fc8f49848cea)
 
 
 # Pixio Community Lite Edition
