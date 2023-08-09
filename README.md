@@ -1,6 +1,7 @@
 # New UI coming soon!
 
-![beta1](https://github.com/rossman22590/Pixio-NextJS-Multi-Model-Stable-DIffusion/assets/6137292/0c451a82-b9cd-4b33-b2cf-babb60f37ffc)
+![image](https://github.com/rossman22590/pixio-community-lite/assets/6137292/b0bf92a3-36db-46d3-b0c2-7970ae81f569)
+
 
 
 # Pixio
