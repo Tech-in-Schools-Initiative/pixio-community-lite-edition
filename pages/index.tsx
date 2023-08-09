@@ -264,11 +264,12 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col items-start min-h-screen py-2 w-full">
+    <div className="flex flex-col items-start min-h-screen w-full py-0"> {/* Removed py-2 */}
   
       {showProdiaKeyModal && <ProdiaKeyModal setProdiaKey={setProdiaKey} setShowProdiaKeyModal={setShowProdiaKeyModal} />} 
   
-      <header className="w-full p-4 mb-8 bg-gray-800 text-white flex justify-around">
+      <header className="w-full p-4 mb-4 bg-gray-800 text-white flex justify-around">
+      {/* Icons */}
         <a href="https://github.com/yourusername/yourrepository" target="_blank" rel="noopener noreferrer">
           <FaGithub size={24} />
         </a>
