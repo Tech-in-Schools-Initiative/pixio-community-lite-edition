@@ -4,7 +4,7 @@ import { Prodia } from "pixio-prodia";
 const defaultSettings = {
   steps: 50,
   cfg_scale: 20,
-  upscale: true,
+  upscale: false,
   sampler: 'DDIM',
   aspect_ratio: 'square'
 };

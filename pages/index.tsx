@@ -1,5 +1,5 @@
 require('dotenv').config()
-
+import { FaGithub, FaQuestionCircle, FaLink, FaLifeRing, FaTwitter } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Lightbox from 'react-image-lightbox';
@@ -9,7 +9,7 @@ import { CircularProgress, Button } from '@material-ui/core';
 
 
 const prohibitedWords = ['nude', 'naked', 'pussy'];
-const ProdiaKeyModal = ({ setProdiaKey, setShowProdiaKeyModal }) => { // Add setShowProdiaKeyModal as a prop
+const ProdiaKeyModal = ({ setProdiaKey, setShowProdiaKeyModal }) => {
   const [key, setKey] = useState('');
 
   const handleInputChange = (e) => {
@@ -20,45 +20,78 @@ const ProdiaKeyModal = ({ setProdiaKey, setShowProdiaKeyModal }) => { // Add set
     e.preventDefault();
     localStorage.setItem('PRODIA_KEY', key);
     setProdiaKey(key);
-    setShowProdiaKeyModal(false); // Add this line
+    setShowProdiaKeyModal(false);
   };
 
   return (
-    <>
-      <div 
+    <div 
+      style={{
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        zIndex: '1000',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        transition: 'opacity 0.3s ease',
+      }}
+    >
+      <form 
+        onSubmit={handleSubmit} 
         style={{
-          position: 'fixed',
-          top: '0',
-          left: '0',
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          zIndex: '1000',
-        }}
-      />
-      <div 
-        className="modal" 
-        style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          backgroundColor: '#fff',
-          padding: '50px',
-          zIndex: '1001',
+          backgroundColor: 'white', 
+          padding: '20px', 
+          borderRadius: '8px', 
+          width: '50%', 
+          maxWidth: '600px'  // Prevent the modal from getting too wide on large screens
         }}
       >
-        <form onSubmit={handleSubmit}>
-          <label>
-            Prodia Key:
-            <input type="text" value={key} onChange={handleInputChange} required />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
-    </>
+        <h2>Prodia Key</h2>
+        <p>You can obtain a Prodia key from the official Pixio website. Register for an account and follow the instructions to obtain your key.</p>
+        <label style={{display: 'block', marginBottom: '10px'}}>
+          Key:
+          <input 
+            type="text" 
+            value={key} 
+            onChange={handleInputChange} 
+            required 
+            style={{
+              width: '100%',
+              padding: '12px 20px',
+              margin: '8px 0',
+              boxSizing: 'border-box',
+              border: '2px solid #ccc',
+              borderRadius: '4px',
+              backgroundColor: '#f8f8f8',
+            }}
+          />
+        </label>
+        <button
+          type="submit"
+          style={{
+            backgroundColor: '#007BFF',
+            color: '#fff',
+            border: 'none',
+            padding: '10px 20px',
+            textAlign: 'center',
+            textDecoration: 'none',
+            display: 'inline-block',
+            fontSize: '16px',
+            margin: '4px 2px',
+            cursor: 'pointer',
+            borderRadius: '4px',
+          }}
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
+
 
   
 export default function HomePage() {
@@ -164,7 +197,7 @@ export default function HomePage() {
           prompt,
           negativePrompt,
           model: modelMap[model],
-          upscale: true,
+          upscale: false,
           aspect_ratio, // add this line
           sampler, // and this line
           prodiaKey, // Add this line
@@ -231,9 +264,30 @@ export default function HomePage() {
   };
 
   return (
-    
     <div className="flex flex-col items-center justify-center min-h-screen py-2 w-full">
-{showProdiaKeyModal && <ProdiaKeyModal setProdiaKey={setProdiaKey} setShowProdiaKeyModal={setShowProdiaKeyModal} />} 
+      {showProdiaKeyModal && <ProdiaKeyModal setProdiaKey={setProdiaKey} setShowProdiaKeyModal={setShowProdiaKeyModal} />} 
+       {/* Here's the new header */}
+       <header className="w-full p-4 bg-gray-800 text-white flex justify-around mb-8">
+      <a href="https://github.com/yourusername/yourrepository" target="_blank" rel="noopener noreferrer">
+        <FaGithub size={24} />
+      </a>
+      <a href="https://your-help-link" target="_blank" rel="noopener noreferrer">
+        <FaQuestionCircle size={24} />
+      </a>
+      <a href="https://your-link" target="_blank" rel="noopener noreferrer">
+        <FaLink size={24} />
+      </a>
+      <a href="https://your-support-link" target="_blank" rel="noopener noreferrer">
+        <FaLifeRing size={24} />
+      </a>
+      <a href="https://twitter.com/yourtwitterhandle" target="_blank" rel="noopener noreferrer">
+        <FaTwitter size={24} />
+      </a>
+    </header>
+
+
+
+
     <h1 className="text-4xl font-bold mb-8">👀Pixio</h1>
     {error && <p className="text-red-500 mb-4">{error}</p>}
     <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md mb-8">

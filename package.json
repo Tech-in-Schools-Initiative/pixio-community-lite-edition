@@ -20,11 +20,12 @@
     "ioredis": "^5.3.2",
     "net": "^1.0.2",
     "next": "latest",
+    "pixio-prodia": "^1.2.2",
     "postcss": "^8.4.24",
     "rate-limiter-flexible": "^2.4.1",
     "react": "^18.2.0",
-    "pixio-prodia": "^1.2.2",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
     "react-image-lightbox": "^5.1.4",
     "tailwindcss": "^3.3.2",
     "tls": "^0.0.1"
