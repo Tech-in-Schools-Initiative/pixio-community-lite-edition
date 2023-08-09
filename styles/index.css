@@ -5,6 +5,8 @@
 .xl\:grid-cols-5 {
     grid-template-columns: repeat(4,minmax(0,1fr))!important;
 }
+
+
 .pageContainer {
   display: flex;
   flex-direction: column;

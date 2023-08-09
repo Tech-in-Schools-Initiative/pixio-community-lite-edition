@@ -264,66 +264,73 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 w-full">
+    <div className="flex flex-col items-start min-h-screen py-2 w-full">
+  
       {showProdiaKeyModal && <ProdiaKeyModal setProdiaKey={setProdiaKey} setShowProdiaKeyModal={setShowProdiaKeyModal} />} 
-       {/* Here's the new header */}
-       <header className="w-full p-4 bg-gray-800 text-white flex justify-around mb-8">
-      <a href="https://github.com/yourusername/yourrepository" target="_blank" rel="noopener noreferrer">
-        <FaGithub size={24} />
-      </a>
-      <a href="https://your-help-link" target="_blank" rel="noopener noreferrer">
-        <FaQuestionCircle size={24} />
-      </a>
-      <a href="https://your-link" target="_blank" rel="noopener noreferrer">
-        <FaLink size={24} />
-      </a>
-      <a href="https://your-support-link" target="_blank" rel="noopener noreferrer">
-        <FaLifeRing size={24} />
-      </a>
-      <a href="https://twitter.com/yourtwitterhandle" target="_blank" rel="noopener noreferrer">
-        <FaTwitter size={24} />
-      </a>
-    </header>
-
-
-
-
-    <h1 className="text-4xl font-bold mb-8">👀Pixio</h1>
-    {error && <p className="text-red-500 mb-4">{error}</p>}
-    <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md mb-8">
-     
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="prompt">
-          Prompt
-        </label>
-        <input
-          type="text"
-          value={prompt}
-          onChange={(event) => setPrompt(event.target.value)}
-          placeholder="Enter your prompt"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="prompt"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="negative-prompt">
-          Negative Prompt
-        </label>
-        <input
-          type="text"
-          value={negativePrompt}
-          onChange={(event) => setNegativePrompt(event.target.value)}
-          placeholder="Enter your negative prompt"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="negative-prompt"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="models">
-          Models
-        </label>
-        <div className="flex flex-wrap">
-          <Button
+  
+      <header className="w-full p-4 mb-8 bg-gray-800 text-white flex justify-around">
+        <a href="https://github.com/yourusername/yourrepository" target="_blank" rel="noopener noreferrer">
+          <FaGithub size={24} />
+        </a>
+        <a href="https://your-help-link" target="_blank" rel="noopener noreferrer">
+          <FaQuestionCircle size={24} />
+        </a>
+        <a href="https://your-link" target="_blank" rel="noopener noreferrer">
+          <FaLink size={24} />
+        </a>
+        <a href="https://your-support-link" target="_blank" rel="noopener noreferrer">
+          <FaLifeRing size={24} />
+        </a>
+        <a href="https://twitter.com/yourtwitterhandle" target="_blank" rel="noopener noreferrer">
+          <FaTwitter size={24} />
+        </a>
+      </header>
+  
+      <div className="flex flex-col lg:flex-row w-full">
+        {/* Left Side (UI/UX Inputs) */}
+        <div className="w-3/10 pr-2">
+        <h1 className="text-4xl font-bold mb-8 text-center">👀Pixio</h1>
+          {error && <p className="text-red-500 mb-4">{error}</p>}
+          
+          <div className="flex flex-wrap justify-center w-full">
+            <div className="bg-white shadow-md rounded-lg p-6 w-full md:max-w-md mb-8">
+              {/* Prompt Input */}
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="prompt">
+                  Prompt
+                </label>
+                <input
+                  type="text"
+                  value={prompt}
+                  onChange={(event) => setPrompt(event.target.value)}
+                  placeholder="Enter your prompt"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="prompt"
+                />
+              </div>
+  
+              {/* Negative Prompt Input */}
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="negative-prompt">
+                  Negative Prompt
+                </label>
+                <input
+                  type="text"
+                  value={negativePrompt}
+                  onChange={(event) => setNegativePrompt(event.target.value)}
+                  placeholder="Enter your negative prompt"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="negative-prompt"
+                />
+              </div>
+  
+              {/* Model Selection */}
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="models">
+                  Models
+                </label>
+                <div className="flex flex-wrap">
+                <Button
             variant="outlined"
             color="primary"
             onClick={selectAllModels}
@@ -331,136 +338,139 @@ export default function HomePage() {
           >
             Select All
           </Button>
-          {models.map((model) => (
-            <Button
-              key={model}
-              variant={selectedModels.includes(model) ? "contained" : "outlined"}
-              color={selectedModels.includes(model) ? "primary" : "default"}
-              onClick={() => toggleModelSelection(model)}
-              className="m-1"
-            >
-              {model}
-            </Button>
-          ))}
+                  {models.map((model) => (
+                    <Button
+                      key={model}
+                      variant={selectedModels.includes(model) ? "contained" : "outlined"}
+                      color={selectedModels.includes(model) ? "primary" : "default"}
+                      onClick={() => toggleModelSelection(model)}
+                      className="m-1"
+                    >
+                      {model}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+  
+              {/* Aspect Ratio and Sampler Inputs */}
+              <div className="flex justify-between mb-4">
+                <div className="w-1/2 pr-2">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="aspect-ratio">
+                    Aspect Ratio
+                  </label>
+                  <select
+                    value={aspect_ratio}
+                    onChange={(event) => setaspect_ratio(event.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="aspect-ratio"
+                  >
+                    <option value="square">square</option>
+                    <option value="portrait">portrait</option>
+                    <option value="landscape">landscape</option>
+                  </select>
+                </div>
+                <div className="w-1/2 pl-2">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="sampler">
+                    Sampler
+                  </label>
+                  <select
+                    value={sampler}
+                    onChange={(event) => setSampler(event.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="sampler"
+                  >
+                    <option value="DDIM">DDIM</option>
+                    <option value="Heun">Heun</option>
+                    <option value="Euler">Euler</option>
+                    <option value="DPM++ 2M Karras">DPM++ 2M Karras</option>
+                  </select>
+                </div>
+              </div>
+  
+              {/* Generation and Gallery Buttons */}
+              <button
+                onClick={handleGenerateImage}
+                disabled={loading}
+                className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline relative"
+              >
+                {loading && (
+                  <CircularProgress
+                    size={24}
+                    style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }}
+                  />
+                )}
+                Generate Image
+              </button>
+  
+              <button
+                onClick={handleSendToDiscord}
+                disabled={imageUrls.every((image) => !image.selected)}
+                className="mt-4 w-full bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700 focus:outline-none focus:shadow-outline"
+              >
+                Send to Gallery
+              </button>
+  
+              <button
+                onClick={toggleSelectAllImages}
+                className="mt-4 w-full bg-orange-600 text-white font-bold py-2 px-4 rounded hover:bg-orange-700 focus:outline-none focus:shadow-outline"
+              >
+                Toggle Select All Images
+              </button>
+  
+              <button className="mt-4 w-full bg-purple-600 text-white font-bold py-2 px-4 rounded hover:bg-purple-700 focus:outline-none focus:shadow-outline">
+                <a href="/gallery" className="block text-center">
+                  View Gallery (Coming Soon)
+                </a>
+              </button>
+  
+              <button className="mt-4 w-full bg-purple-600 text-white font-bold py-2 px-4 rounded hover:bg-purple-700 focus:outline-none focus:shadow-outline">
+                <a href="/gallery" className="block text-center">
+                  Prompt Builder (Coming Soon)
+                </a>
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="flex justify-between mb-4">
-  <div className="w-1/2 pr-2">
-    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="aspect-ratio">
-      Aspect Ratio
-    </label>
-    <select
-      value={aspect_ratio}
-      onChange={(event) => setaspect_ratio(event.target.value)}
-      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      id="aspect-ratio"
-    >
-      <option value="square">square</option>
-      <option value="portrait">portrait</option>
-      <option value="landscape">landscape</option>
-    </select>
-  </div>
-  <div className="w-1/2 pl-2">
-    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="sampler">
-      Sampler
-    </label>
-    <select
-      value={sampler}
-      onChange={(event) => setSampler(event.target.value)}
-      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      id="sampler"
-    >
-      <option value="DDIM">DDIM</option>
-      <option value="Heun">Heun</option>
-      <option value="Euler">Euler</option>
-      <option value="DPM++ 2M Karras">DPM++ 2M Karras</option>
-    </select>
-  </div>
-</div>
-
-
-      {selectedModels.length > 0 && (
-        <div className="mb-4 text-red-500">
-          {selectedModels.length === models.length
-            ? '⏳ Generation can take up to 4 minutes. Please be patient. 🙏'
-            : '⏳ Generation may take a few seconds with 1 model selected. With all models selected, it can take up to 4 minutes. Please be patient. 🙏'}
-            {' '}
-            🚫 Remember, some prompts can generate NSFW content, so watch out what you type. 👀
-        </div>
-      )}
-      <button
-        onClick={handleGenerateImage}
-        disabled={loading}
-        className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline relative"
+  
+{/* Right Side (Image Gallery) */}
+<div className="w-full lg:w-7/10 pl-2">
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 sm:gap-4 md:gap-6 lg:gap-8">
+    {imageUrls.map((image, index) => (
+      <div
+        key={index}
+        className={`relative rounded-lg overflow-hidden cursor-pointer ${image.selected ? 'border-2 border-blue-500' : ''}`}
+        onClick={() => handleOpenLightbox(index)}
       >
-        {loading && (
-          <CircularProgress
-            size={24}
-            style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }}
-          />
-        )}
-        <span style={{ marginLeft: loading ? '30px' : '0' }}>{buttonText}</span>
-      </button>
-      <button
-        onClick={handleSendToDiscord}
-        disabled={imageUrls.every((image) => !image.selected)}
-        className="mt-4 w-full bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700 focus:outline-none focus:shadow-outline"
-      >
-        Send to Gallery
-      </button>
-      <button
-  onClick={toggleSelectAllImages}
-  className="mt-4 w-full bg-orange-600 text-white font-bold py-2 px-4 rounded hover:bg-orange-700 focus:outline-none focus:shadow-outline"
->
-  Toggle Select All Images
-</button>
-
-
-      <button className="mt-4 w-full bg-purple-600 text-white font-bold py-2 px-4 rounded hover:bg-purple-700 focus:outline-none focus:shadow-outline">
-        <a href="/gallery" className="block text-center">
-          View Gallery (Coming Soon)
-        </a>
-      </button>
-      <button className="mt-4 w-full bg-purple-600 text-white font-bold py-2 px-4 rounded hover:bg-purple-700 focus:outline-none focus:shadow-outline">
-        <a href="/gallery" className="block text-center">
-          Prompt Builder (Coming Soon)
-        </a>
-      </button>
-      
-    </div>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-w-6xl mx-auto">
-      {imageUrls.map((image, index) => (
-        <div
-          key={index}
-          className={`relative rounded-lg overflow-hidden cursor-pointer ${
-            image.selected ? 'border-2 border-blue-500' : ''
-          }`}
-          onClick={() => handleOpenLightbox(index)}
-        >
-          <img src={image.imageUrl} alt="Generated image" className="w-full h-auto" />
-          <div className="absolute top-2 right-2">
+        <div style={{ paddingBottom: '100%' }} className="relative">
+          <img src={image.imageUrl} alt="Generated image" className="absolute w-full h-full object-cover top-0 left-0" />
+          {/* <div className="absolute top-2 right-2">
             <input
               type="checkbox"
               checked={image.selected}
               onChange={() => handleToggleImageSelection(index)}
               className="m-2"
             />
-          </div>
+          </div> */}
         </div>
-      ))}
-    </div>
-    {lightboxOpen && (
-      <Lightbox
-        mainSrc={imageUrls[lightboxIndex].imageUrl}
-        nextSrc={imageUrls[(lightboxIndex + 1) % imageUrls.length].imageUrl}
-        prevSrc={imageUrls[(lightboxIndex + imageUrls.length - 1) % imageUrls.length].imageUrl}
-        onCloseRequest={() => setLightboxOpen(false)}
-        onMovePrevRequest={() =>
-          setLightboxIndex((lightboxIndex + imageUrls.length - 1) % imageUrls.length)
-        }
-        onMoveNextRequest={() => setLightboxIndex((lightboxIndex + 1) % imageUrls.length)}
-      />
-    )}
+      </div>
+    ))}
   </div>
+
+
+
+
+          {lightboxOpen && (
+            <Lightbox
+              mainSrc={imageUrls[lightboxIndex].imageUrl}
+              nextSrc={imageUrls[(lightboxIndex + 1) % imageUrls.length].imageUrl}
+              prevSrc={imageUrls[(lightboxIndex + imageUrls.length - 1) % imageUrls.length].imageUrl}
+              onCloseRequest={() => setLightboxOpen(false)}
+              onMovePrevRequest={() => setLightboxIndex((lightboxIndex + imageUrls.length - 1) % imageUrls.length)}
+              onMoveNextRequest={() => setLightboxIndex((lightboxIndex + 1) % imageUrls.length)}
+            />
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
