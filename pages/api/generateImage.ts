@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { Prodia } from "pixio-prodia";
 
 const defaultSettings = {
-  steps: 50,
+  steps: 30,
   cfg_scale: 20,
   upscale: false,
   sampler: 'DDIM',
