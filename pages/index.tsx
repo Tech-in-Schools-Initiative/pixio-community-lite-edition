@@ -270,19 +270,19 @@ export default function HomePage() {
   
       <header className="w-full p-4 mb-4 bg-gray-800 text-white flex justify-around">
       {/* Icons */}
-        <a href="https://github.com/yourusername/yourrepository" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/rossman22590/pixio-community-lite" target="_blank" rel="noopener noreferrer">
           <FaGithub size={24} />
         </a>
-        <a href="https://your-help-link" target="_blank" rel="noopener noreferrer">
+        <a href="https://docs-three-jet.vercel.app/" target="_blank" rel="noopener noreferrer">
           <FaQuestionCircle size={24} />
         </a>
-        <a href="https://your-link" target="_blank" rel="noopener noreferrer">
+        <a href="https://pixio.myapps.ai" target="_blank" rel="noopener noreferrer">
           <FaLink size={24} />
         </a>
-        <a href="https://your-support-link" target="_blank" rel="noopener noreferrer">
+        <a href="https://myapps.ai" target="_blank" rel="noopener noreferrer">
           <FaLifeRing size={24} />
         </a>
-        <a href="https://twitter.com/yourtwitterhandle" target="_blank" rel="noopener noreferrer">
+        <a href="https://x.com/tsi_org" target="_blank" rel="noopener noreferrer">
           <FaTwitter size={24} />
         </a>
       </header>
