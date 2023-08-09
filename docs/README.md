@@ -34,7 +34,7 @@ Pixio Community Lite Edition is more than just a tool; it's a community of creat
 
 ## Demo
 
-To see a live demo of Pixio Community Lite Edition, you can visit the following link: [Demo](https://Pixio Community Lite Edition-community-lite.vercel.app/)
+To see a live demo of Pixio Community Lite Edition, you can visit the following link: [Demo](https://pixio-community-lite.vercel.app/)
 
 ## Getting Started
 
