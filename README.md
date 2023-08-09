@@ -1,6 +1,7 @@
 # New UI coming soon!
 
-![image](https://github.com/rossman22590/Pixio Community Lite-community-lite/assets/6137292/b0bf92a3-36db-46d3-b0c2-7970ae81f569)
+![image](https://github.com/rossman22590/pixio-community-lite/assets/6137292/932f8e7a-0c37-4f0e-a30e-d0f7b1495777)
+
 
 # Pixio Community Lite
 
