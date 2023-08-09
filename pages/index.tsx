@@ -270,7 +270,7 @@ export default function HomePage() {
   
       <header className="w-full p-4 mb-4 bg-gray-800 text-white flex justify-around">
       {/* Icons */}
-        <a href="https://github.com/rossman22590/pixio-community-lite" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/Tech-in-Schools-Inititaitive/pixio-community-lite-edition" target="_blank" rel="noopener noreferrer">
           <FaGithub size={24} />
         </a>
         <a href="https://docs-three-jet.vercel.app/" target="_blank" rel="noopener noreferrer">
