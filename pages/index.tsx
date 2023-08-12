@@ -514,12 +514,11 @@ const handleSelect = (value) => {
 
       </header>
   
-      <div className="w-full lg:w-450px lg:pr-2 flex flex-col items-center mb-8 lg:mb-0 bg-white shadow-md rounded-lg p-6">
-        <div className="flex items-center mb-8">
-        <img src={process.env.LOGO_URL} alt="Pixio Generator" className="w-26 h-16 mr-4" />
-          {/* <h1 className="text-4xl font-bold">Pixio</h1> */}
-        </div>
-        {error && <p className="text-red-500 mb-4">{error}</p>}
+      <div className="flex flex-col lg:flex-row w-full">
+        {/* Left Side (UI/UX Inputs) */}
+  <div className="w-full lg:w-450px lg:pr-2 flex flex-col items-center mb-8 lg:mb-0 bg-white shadow-md rounded-lg p-6">
+  <div className="flex items-center mb-8"> <img src={process.env.LOGO_URL} alt="Pixio Generator" className="w-26 h-16 mr-4" /> </div>
+          {error && <p className="text-red-500 mb-4">{error}</p>}
           
           <div className="flex flex-wrap justify-center w-full">
             <div className="bg-white shadow-md rounded-lg p-6 w-full md:max-w-md mb-8">
@@ -870,6 +869,6 @@ const handleSelect = (value) => {
           )}
         </div>
       </div>
-
+    </div>
   );
 }
