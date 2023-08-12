@@ -200,6 +200,7 @@ export default function HomePage() {
   const [error, setError] = useState(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [rawText, setRawText] = useState('');
   const [buttonText, setButtonText] = useState('Generate Images');
   const toggleModelSelection = (model) => {
     if (selectedModels.includes(model)) {
@@ -402,6 +403,50 @@ const handleImageClick = (index) => {
     }
   };
   
+  const handlePaste = async (event) => {
+    // Prevent the default paste action
+    event.preventDefault();
+  
+    // Use navigator.clipboard to read the clipboard text
+    try {
+      const pastedText = await navigator.clipboard.readText();
+      console.log('Pasted text:', pastedText);
+  
+      // Splitting at "Negative prompt:" to separate the main prompt and the rest
+      const negativePromptIndex = pastedText.indexOf('Negative prompt:');
+      const mainPrompt = pastedText.substring(0, negativePromptIndex).trim();
+      const rest = pastedText.substring(negativePromptIndex + 'Negative prompt:'.length).trim();
+  
+      const negativePromptParts = rest.split('\n');
+      const negativePrompt = negativePromptParts[0].trim();
+  
+      // Extracting other parameters by splitting them at "," and ":"
+      const parameters = {};
+      const lines = negativePromptParts[1].split(', ');
+      for (let i = 0; i < lines.length; i++) {
+        const [key, value] = lines[i].split(': ');
+        if (key && value) {
+          parameters[key.trim()] = value.trim();
+        }
+      }
+  
+      // Now you can use mainPrompt, negativePrompt, and parameters to set the state in your component
+      setPrompt(mainPrompt); // Set the main prompt
+      setNegativePrompt(negativePrompt);
+      setSteps(Number(parameters['Steps']));
+      setSampler(parameters['Sampler']);
+      setCfg_scale(Number(parameters['CFG scale']));
+      setSeed(Number(parameters['Seed']));
+      // You can continue extracting other parameters in a similar way
+    } catch (err) {
+      console.error('Failed to read clipboard text:', err);
+    }
+  };
+  
+  
+  
+
+  
   const CustomValueContainer = ({ children, ...props }) => (
     <div {...props} className="flex flex-wrap">
       {children}
@@ -478,6 +523,7 @@ const handleSelect = (value) => {
           <div className="flex flex-wrap justify-center w-full">
             <div className="bg-white shadow-md rounded-lg p-6 w-full md:max-w-md mb-8">
               {/* Prompt Input */}
+
               <div className="mb-4">
   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="prompt">
     Prompt
@@ -506,6 +552,21 @@ const handleSelect = (value) => {
   rows={3}
 />
 </div> 
+<div className="mb-4">
+  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="raw-text">
+    Civit AI Prompt Paste
+  </label>
+  <textarea
+    value={rawText}
+    onChange={(event) => setRawText(event.target.value)}
+    className={`shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline ${darkMode ? 'text-white' : 'text-gray-700'}`}
+    id="raw-text"
+    rows={3}
+  />
+  <button onClick={handlePaste} className="mt-2 bg-green-500 text-white px-4 py-2 rounded">
+    Extract and Fill
+  </button>
+</div>
 {/* Model Selection */}
 <div className="mb-4">
   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="models">
@@ -624,6 +685,7 @@ const handleSelect = (value) => {
       Aspect Ratio
     </label>
     <select
+    onPaste={handlePaste}
       value={aspect_ratio}
       onChange={(event) => setaspect_ratio(event.target.value)}
       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -639,6 +701,7 @@ const handleSelect = (value) => {
       Sampler
     </label>
     <select
+    onPaste={handlePaste}
       value={sampler}
       onChange={(event) => setSampler(event.target.value)}
       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -659,6 +722,7 @@ const handleSelect = (value) => {
       Steps
     </label>
     <input
+     onPaste={handlePaste}
       type="number"
       value={steps}
       onChange={(event) => setSteps(Number(event.target.value))}
@@ -673,6 +737,7 @@ const handleSelect = (value) => {
       CFG Scale
     </label>
     <input
+     onPaste={handlePaste}
       type="number"
       value={cfg_scale}
       onChange={(event) => setCfg_scale(Number(event.target.value))}
@@ -685,6 +750,7 @@ const handleSelect = (value) => {
       Seed
     </label>
     <input
+     onPaste={handlePaste}
       type="number"
       value={seed}
       onChange={(event) => setSeed(Number(event.target.value))}
@@ -698,6 +764,7 @@ const handleSelect = (value) => {
       Upscale
     </label>
     <input
+     onPaste={handlePaste}
       type="checkbox"
       checked={upscale}
       onChange={(event) => setUpscale(event.target.checked)}
@@ -708,7 +775,6 @@ const handleSelect = (value) => {
 </div>
 </div>
 
-  
               {/* Generation and Gallery Buttons */}
               <button
                 onClick={handleGenerateImage}
