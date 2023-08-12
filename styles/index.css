@@ -9,6 +9,11 @@
   background-color: #1b1b1b;
   color: #f0f0f0;
 }
+.select__control {
+  cursor: pointer;
+}
+
+
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: #1b1b1b;
@@ -24,6 +29,15 @@
   color: white;
 }
 
+.row-start {
+  flex-wrap: wrap;
+}
+
+.model-item {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
 .dark input,
 .dark select,
 .dark button {
@@ -44,6 +58,9 @@
   padding: 20px;
   background-color: #f9f9f9;
   font-family: Arial, sans-serif;
+}
+.select-option {
+  cursor: pointer;
 }
 
 .max-w-md {
