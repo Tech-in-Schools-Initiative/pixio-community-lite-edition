@@ -56,7 +56,7 @@ const modelOptions = Object.keys(modelDetails).map((key) => ({
   description: modelDetails[key].description,
 }));
 
-const prohibitedWords = ['nude', 'naked', 'pussy'];
+const prohibitedWords = ['"none"'];
 
 // Define your suggestions for autocomplete here
 const suggestions = [
@@ -560,6 +560,7 @@ const handleSelect = (value) => {
     value={rawText}
     onChange={(event) => setRawText(event.target.value)}
     className={`shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline ${darkMode ? 'text-white' : 'text-gray-700'}`}
+    style={darkMode ? { backgroundColor: '#262626' } : {}}
     id="raw-text"
     rows={3}
   />
