@@ -79,7 +79,7 @@ const ProdiaKeyModal = ({ setProdiaKey, setShowProdiaKeyModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem('PRODIA_KEY', key);
+    localStorage.setItem('NEXT_PUBLIC_PRODIA_KEY', key);
     setProdiaKey(key);
     setShowProdiaKeyModal(false);
   };
@@ -170,13 +170,13 @@ export default function HomePage() {
   
   const [showProdiaKeyModal, setShowProdiaKeyModal] = useState(true); // Add this line
   useEffect(() => {
-    const storedKey = localStorage.getItem('PRODIA_KEY');
+    const storedKey = localStorage.getItem('NEXT_PUBLIC_PRODIA_KEY');
     console.log('Stored key:', storedKey); // Add this line
     if (storedKey) {
       setProdiaKey(storedKey);
       setShowProdiaKeyModal(false);
     } else {
-      const envKey = process.env.PRODIA_KEY;
+      const envKey = process.env.NEXT_PUBLIC_PRODIA_KEY;
       console.log('Env key:', envKey); // And this line
       if (envKey) {
         setProdiaKey(envKey);
