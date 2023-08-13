@@ -586,6 +586,7 @@ const handleSelect = (value) => {
   </button>
   {selectedModels.length < modelOptions.length && (
  <Autocomplete
+
  inputProps={{
   style: {
     width: '300px',
