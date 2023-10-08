@@ -1,33 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Prodia } from "pixio-prodia";
+const { Prodia } = require('prodia.js');
+
+const prodia = new Prodia(process.env.PRODIA_KEY);
 
 const defaultSettings = {
   steps: 30,
   cfg_scale: 20,
-  upscale: false,
+  upscale: true,
   sampler: 'DDIM',
   aspect_ratio: 'square'
 };
 
-async function createImageGenerationJob(prodia, options) {
-  console.log('Creating image generation job with options:', options);
-  let job = await prodia.createJob(options);
-
-  console.log('Created job:', job);
-
-  while (job.status !== "succeeded" && job.status !== "failed") {
-    await new Promise((resolve) => setTimeout(resolve, 250));
-    job = await prodia.getJob(job.job);
-    console.log('Updated job status:', job.status);
-  }
-
-  console.log('Job status:', job.status);
-  return job;
-}
-
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const {
-    prodiaKey,
     model,
     prompt,
     negativePrompt,
@@ -39,21 +24,28 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     aspect_ratio
   } = req.body;
 
-  const prodia = new Prodia(prodiaKey);
+  // Preparing options for image generation
   const options = {
     model: model || 'deliberate_v2.safetensors [10ec4b29]',
-    prompt: prompt || 'puppy in the clouds 4k',
-    negative_prompt: negativePrompt || 'unnatural, unrealistic, cartoon, illustration, painting, drawing, unreal engine, black and white, monochrome, oversaturated, low saturation, surreal, underexposed, overexposed, jpeg artifacts, conjoined, aberrations, multiple levels, harsh lighting, anime, sketches, twisted, video game, photoshop, creative, UI, abstract, collapsed, rotten, extra windows, disfigured, disproportionate, bad anatomy, bad proportions, ugly, out of frame, mangled, asymmetric, cross-eyed, depressed, immature, stuffed animal, out of focus, high depth of field, cloned face, cloned head, age spot, skin blemishes, collapsed eyeshadow, asymmetric ears, imperfect eyes, floating hair, unnatural, conjoined, missing limb, missing arm, missing leg, poorly drawn face, poorly drawn feet, poorly drawn hands, floating limb, disconnected limb, extra limb, malformed limbs, malformed hands, poorly rendered face, poor facial details, poorly rendered hands, double face, unbalanced body, unnatural body, lacking body, childish, long body, cripple, old, fat, cartoon, 3D, weird colors, unnatural skin tone, unnatural skin, stiff face, fused hand, skewed eyes, mustache, beard, surreal, cropped head, group of people,pixelated,noisy,distorted,overexposed,underexposed,caricature,unnatural colors,oversaturated,undersaturated,too dark,too light,lack of detail,exaggerated features,unbalanced composition,fuzzy,sketch-like,discolored,flat lighting,cartoon,deformed,ugly,blurry,low quality,low resolution,low res,low resolution,low res',
+    prompt: prompt || 'puppy',
+    negativePrompt: negativePrompt, // Negative prompt
     seed: seed || -1,
     steps: steps || defaultSettings.steps,
-    cfg_scale: cfg_scale || defaultSettings.cfg_scale,
+    cfgScale: cfg_scale || defaultSettings.cfg_scale, // cfg_scale to cfgScale
     upscale: upscale !== undefined ? upscale : defaultSettings.upscale,
     sampler: sampler || defaultSettings.sampler,
-    aspect_ratio: aspect_ratio || defaultSettings.aspect_ratio
+    aspectRatio: aspect_ratio || defaultSettings.aspect_ratio // aspect_ratio to aspectRatio
   };
 
   try {
-    let imageGenerationJob = await createImageGenerationJob(prodia, options);
+    // Call the generateImage method from the Prodia class to start the image generation process
+    let imageGenerationJob = await prodia.generateImage(options);
+    
+    // Polling job status
+    while (imageGenerationJob.status !== "succeeded" && imageGenerationJob.status !== "failed") {
+      await new Promise((resolve) => setTimeout(resolve, 250));
+      imageGenerationJob = await prodia.getJob(imageGenerationJob.job); // Assuming getJob is a method in Prodia class
+    }
 
     if (imageGenerationJob.status !== "succeeded") {
       throw new Error("Image generation job failed");
