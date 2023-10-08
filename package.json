@@ -27,6 +27,7 @@
     "next": "latest",
     "pixio-prodia": "^1.2.2",
     "postcss": "^8.4.24",
+    "prodia.js": "^2.0.0",
     "rate-limiter-flexible": "^2.4.1",
     "react": "^18.2.0",
     "react-autocomplete": "^1.8.1",
