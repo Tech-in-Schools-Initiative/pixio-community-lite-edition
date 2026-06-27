@@ -1,7 +1,7 @@
-import '../styles/index.css'
+import type { AppProps } from 'next/app';
+import '@xyflow/react/dist/style.css';
+import '../styles/index.css';
 
-function HomePage({ Component, pageProps }) {
-  return <Component {...pageProps} />
+export default function PixioApp({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />;
 }
-
-export default HomePage
